@@ -1,0 +1,2 @@
+# go_gin_encapsulation
+golang gin框架无法创建基于上下文content的资源 对路由进行再封装
