@@ -5,8 +5,12 @@ import "github.com/gin-gonic/gin"
 // MiddlewareHandler 中间件方法函数
 type MiddlewareHandler func(c *Resource)
 
-// RequestHandler 请求方法函数
-type RequestHandler func(c *Resource) *Jsonify
+// RequestHandlerFunc 请求方法函数
+type RequestHandlerFunc func(c *Resource) *Jsonify
+
+type RequestHandler interface {
+	Handler(c *Resource) *Jsonify
+}
 
 // Resource 基于资源的上下文
 // 可以在Resource中添加任意资源 用户信息 数据库对象 等

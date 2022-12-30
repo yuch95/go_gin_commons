@@ -7,5 +7,7 @@ type returnCode struct {
 }
 
 var (
-	Success = returnCode{code: 10000, msg: "请求成功!"}
+	Success      = returnCode{code: 10000, msg: "请求成功!"}
+	ParamsError  = returnCode{code: 30001, msg: "参数错误!"}
+	RequestError = returnCode{code: 30004, msg: "请求错误!"}
 )

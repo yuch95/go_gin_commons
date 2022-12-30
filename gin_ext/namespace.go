@@ -26,7 +26,7 @@ func (n *Namespace) NewNamespace(name string, path string, middle ...MiddlewareH
 func (n *Namespace) createHandlerFunc(handler RequestHandler, middle ...MiddlewareHandler) gin.HandlerFunc {
 	// 经请求处理函数转换成 自定义中间件函数 并将返回结果JSON序列化
 	requestTrance := func(r *Resource) {
-		resp := handler(r)
+		resp := handler.Handler(r)
 		if resp != nil {
 			r.JSON(200, resp)
 		}
@@ -36,7 +36,7 @@ func (n *Namespace) createHandlerFunc(handler RequestHandler, middle ...Middlewa
 	newMiddle := append(append(n.Middleware, middle...), requestTrance)
 	// 创建gin的处理函数 并在其中创建自定义资源函数 并开始执行自定义中间件
 	return func(c *gin.Context) {
-		resource := &Resource{handlers: newMiddle, Context: c}
+		resource := &Resource{handlers: newMiddle, Context: c, Jsonify: &Jsonify{}}
 		resource.begin()
 	}
 }
