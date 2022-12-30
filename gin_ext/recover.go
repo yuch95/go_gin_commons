@@ -3,6 +3,7 @@ package gin_ext
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"tools.com/libs/libs"
 )
 
 func validateErr(errs validator.ValidationErrors, c *gin.Context) {
@@ -12,7 +13,7 @@ func validateErr(errs validator.ValidationErrors, c *gin.Context) {
 		msg := e.Error()
 		errMsgMap[name] = msg
 	}
-	c.JSON(200, &Jsonify{Code: ParamsError.code, Msg: ParamsError.msg, Data: errMsgMap})
+	c.JSON(200, &libs.Jsonify{Code: libs.ParamsError.Code, Msg: libs.ParamsError.Msg, Data: errMsgMap})
 }
 
 // Recover 全局异常捕获中间件
@@ -23,7 +24,7 @@ func Recover(c *gin.Context) {
 			case validator.ValidationErrors:
 				validateErr(err.(validator.ValidationErrors), c)
 			default:
-				c.JSON(200, &Jsonify{Code: RequestError.code, Msg: "系统开小差!"})
+				c.JSON(200, &libs.Jsonify{Code: libs.RequestError.Code, Msg: "系统开小差!"})
 			}
 		}
 	}()

@@ -1,6 +1,9 @@
 package gin_ext
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"tools.com/libs/libs"
+)
 
 // Namespace 命名空间 路由组、蓝图
 type Namespace struct {
@@ -36,7 +39,7 @@ func (n *Namespace) createHandlerFunc(handler RequestHandler, middle ...Middlewa
 	newMiddle := append(append(n.Middleware, middle...), requestTrance)
 	// 创建gin的处理函数 并在其中创建自定义资源函数 并开始执行自定义中间件
 	return func(c *gin.Context) {
-		resource := &Resource{handlers: newMiddle, Context: c, Jsonify: &Jsonify{}}
+		resource := &Resource{handlers: newMiddle, Context: c, Jsonify: &libs.Jsonify{}}
 		resource.begin()
 	}
 }
