@@ -14,6 +14,7 @@ type Resource struct {
 	index    int8
 	handlers []MiddlewareHandler
 	*gin.Context
+	*Jsonify
 }
 
 // begin 开始运行资源中的方法

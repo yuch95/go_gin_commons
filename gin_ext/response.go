@@ -10,22 +10,22 @@ type Jsonify struct {
 }
 
 // SuccessResp 构建成功响应
-func SuccessResp(data any) *Jsonify {
-	code := Success.code
-	msg := Success.msg
-	return &Jsonify{Code: code, Msg: msg, Data: data}
+func (j *Jsonify) SuccessResp(data any) *Jsonify {
+	j.Code = Success.code
+	j.Msg = Success.msg
+	j.Data = data
+	return j
 }
 
 // ErrorResp 构建失败响应
-func ErrorResp(returnCode returnCode, msg ...string) *Jsonify {
-	code := returnCode.code
-	var newMsg string
+func (j *Jsonify) ErrorResp(returnCode returnCode, msg ...string) *Jsonify {
+	j.Code = returnCode.code
 	if len(msg) > 0 {
 		for _, s := range msg {
-			newMsg += s
+			j.Msg += s
 		}
 	} else {
-		newMsg = returnCode.msg
+		j.Msg = returnCode.msg
 	}
-	return &Jsonify{Code: code, Msg: newMsg}
+	return j
 }
