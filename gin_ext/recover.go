@@ -6,6 +6,7 @@ import (
 	"tools.com/libs/libs"
 )
 
+// validateErr 参数校验异常处理
 func validateErr(errs validator.ValidationErrors, c *gin.Context) {
 	errMsgMap := make(map[string]string)
 	for _, e := range errs {
