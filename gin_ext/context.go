@@ -6,25 +6,25 @@ import (
 )
 
 // MiddlewareHandler 中间件方法函数
-type MiddlewareHandler func(c *Resource)
+type MiddlewareHandler func(c *Context)
 
 // RequestHandlerFunc 请求方法函数
-type RequestHandlerFunc func(c *Resource) *resp.Jsonify
+type RequestHandlerFunc func(c *Context) *resp.Jsonify
 
 type RequestHandler interface {
-	Handler(c *Resource) *resp.Jsonify
+	Handler(c *Context) *resp.Jsonify
 }
 
-// Resource 基于资源的上下文
-// 可以在Resource中添加任意资源 用户信息 数据库对象 等
-type Resource struct {
+// Context 基于资源的上下文
+// 可以在Context中添加任意资源 用户信息 数据库对象 等
+type Context struct {
 	index    int8
 	handlers []MiddlewareHandler
 	*gin.Context
 }
 
 // begin 开始运行资源中的方法
-func (r *Resource) begin() {
+func (r *Context) begin() {
 	for r.index < int8(len(r.handlers)) {
 		r.handlers[r.index](r)
 		r.index++
@@ -32,7 +32,7 @@ func (r *Resource) begin() {
 }
 
 // Next 中间件中执行下个方法
-func (r *Resource) Next() {
+func (r *Context) Next() {
 	r.index++
 	for r.index < int8(len(r.handlers)) {
 		r.handlers[r.index](r)
