@@ -2,17 +2,17 @@ package gin_ext
 
 import (
 	"github.com/gin-gonic/gin"
-	"tools.com/libs/libs"
+	"tools.com/libs/libs/resp"
 )
 
 // MiddlewareHandler 中间件方法函数
 type MiddlewareHandler func(c *Resource)
 
 // RequestHandlerFunc 请求方法函数
-type RequestHandlerFunc func(c *Resource) *libs.Jsonify
+type RequestHandlerFunc func(c *Resource) *resp.Jsonify
 
 type RequestHandler interface {
-	Handler(c *Resource) *libs.Jsonify
+	Handler(c *Resource) *resp.Jsonify
 }
 
 // Resource 基于资源的上下文
@@ -21,7 +21,6 @@ type Resource struct {
 	index    int8
 	handlers []MiddlewareHandler
 	*gin.Context
-	*libs.Jsonify
 }
 
 // begin 开始运行资源中的方法

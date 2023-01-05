@@ -1,4 +1,4 @@
-package libs
+package resp
 
 // returnCode 响应状态码
 type returnCode struct {

@@ -1,4 +1,4 @@
-package libs
+package resp
 
 type StatusCode int
 
@@ -10,7 +10,8 @@ type Jsonify struct {
 }
 
 // SuccessResp 构建成功响应
-func (j *Jsonify) SuccessResp(data any) *Jsonify {
+func SuccessResp(data any) *Jsonify {
+	j := &Jsonify{}
 	j.Code = Success.Code
 	j.Msg = Success.Msg
 	j.Data = data
@@ -18,7 +19,8 @@ func (j *Jsonify) SuccessResp(data any) *Jsonify {
 }
 
 // ErrorResp 构建失败响应
-func (j *Jsonify) ErrorResp(returnCode returnCode, msg ...string) *Jsonify {
+func ErrorResp(returnCode returnCode, msg ...string) *Jsonify {
+	j := &Jsonify{}
 	j.Code = returnCode.Code
 	if len(msg) > 0 {
 		for _, s := range msg {
