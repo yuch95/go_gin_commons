@@ -6,6 +6,6 @@ import (
 )
 
 type Resource struct {
-	DbDao    database.DBDao
+	DbDao    database.DbDao
 	UserInfo auth.UserInfo
 }
