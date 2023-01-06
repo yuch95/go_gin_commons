@@ -2,6 +2,8 @@ package resource
 
 import (
 	"github.com/gin-gonic/gin"
+	"tools.com/libs/libs/auth"
+	"tools.com/libs/libs/db_dao"
 	"tools.com/libs/libs/resp"
 )
 
@@ -20,6 +22,8 @@ type RequestHandler interface {
 type Context struct {
 	index    int8
 	handlers []MiddlewareHandler
+	DbDao    db_dao.DBDao
+	UserInfo auth.UserInfo
 	*gin.Context
 }
 
