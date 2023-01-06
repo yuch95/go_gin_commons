@@ -3,14 +3,19 @@ module tools.com/libs
 go 1.18
 
 require (
-	github.com/aliyun/aliyun-oss-go-sdk v2.2.6+incompatible // indirect
+	github.com/aliyun/aliyun-oss-go-sdk v2.2.6+incompatible
+	github.com/gin-gonic/gin v1.8.2
+	github.com/go-playground/validator/v10 v10.11.1
+	github.com/golang-jwt/jwt/v4 v4.4.3
+	gorm.io/driver/postgres v1.4.6
+	gorm.io/gorm v1.24.2
+)
+
+require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.8.2 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
-	github.com/go-playground/universal-translator v0.18.0 // indirect
-	github.com/go-playground/validator/v10 v10.11.1 // indirect
+	github.com/go-playground/universal-translator v0.18.0 // indirect; indirectgo
 	github.com/goccy/go-json v0.9.11 // indirect
-	github.com/golang-jwt/jwt/v4 v4.4.3 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgx/v5 v5.2.0 // indirect
@@ -30,6 +35,4 @@ require (
 	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gorm.io/driver/postgres v1.4.6 // indirect
-	gorm.io/gorm v1.24.2 // indirect
 )
